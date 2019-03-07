@@ -7,7 +7,8 @@ const SECRET = process.env.SECRET;
 
 const UserSchema = new mongoose.Schema({
   username: { type: String,  lowercase: true, unique: true, required: [true, 'can\'t be blank'] },
-  email: { type: String,  lowercase: true, unique: true, required: [true, 'can\'t be blank'] },
+  email: { type: String,  lowercase: true, unique: true, required: [true, 'can\'t be blank'],
+    match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
   name: { type: String,  lowercase: true, required: [true, 'can\'t be blank'] },
   age: Number,
   password: String,
