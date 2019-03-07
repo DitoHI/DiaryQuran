@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
 const salt = parseInt(process.env.DEFAULT_SALT_ROUNDS);
+const SECRET = process.env.SECRET;
 
 const UserSchema = new mongoose.Schema({
   username: { type: String,  lowercase: true, unique: true, required: [true, 'can\'t be blank'] },
@@ -27,7 +28,7 @@ UserSchema.methods.generateJWT = function() {
     id: this._id,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000)
-  }, process.env.SECRET);
+  }, SECRET);
 };
 
 UserSchema.methods.toAuthJSON = function() {
