@@ -55,22 +55,29 @@ exports.login = function (req, res) {
     })
   }
 
-  const user = new User();
-  user.username = req.body.username;
-  user.email = req.body.email;
+  const user = {
+    username: req.body.username,
+    email: req.body.email,
+  };
 
-  User.find(user, displayParameters).exec().then(async (output) => {
+  User.find(user).exec().then(async (output) => {
+    if (output.length === 0) {
+      return res.status(failedResponse).json({
+        message: 'No user found'
+      })
+    }
 
     const password = req.body.password;
-    const valid = await bcrypt.compare(password, output.password);
+    const valid = await bcrypt.compare(password, output[0].password).then((output));
     if (!valid) {
       return res.status(failedResponse).json({
         message: 'Invalid password'
       })
     }
 
+    const userSchema = new User(output[0]);
     return res.status(successResponse).json({
-      user: output
+      user: userSchema.toAuthJSON()
     })
   }).catch((err) => {
     return res.status(failedResponse).json({
