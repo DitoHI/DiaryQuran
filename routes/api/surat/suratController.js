@@ -1,5 +1,6 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
+const User = mongoose.model('User');
 const Surat = mongoose.model('Surat');
 const Ayat = mongoose.model('Ayat');
 const AyatTranslation = mongoose.model('AyatTranslation');
@@ -161,39 +162,62 @@ exports.findAyat = function (req, res, next) {
     })
   }
 
-  // if (!req.body.ayatNumber && !req.body.ayatTranslation && !req.body.ayatTafsir) {
-  //   return res.status(failedResponse).json({
-  //     message: 'Please input the number, translation, or tafsir of ayat'
-  //   })
-  // }
+  if (req.surats.length > 1) {
+    return res.status(failedResponse).json({
+      message: `There are ${req.surats.length} surat from your searches. Please specify more the surat`
+    })
+  }
+
+  if (!req.body.ayatNumber && !req.body.ayatTranslation && !req.body.ayatTafsir) {
+    return res.status(failedResponse).json({
+      message: 'Please input the number, translation, or tafsir of ayat'
+    })
+  }
 
   const surat = req.surats[0];
 
   let ayat = {};
+  let ayatTranslation = {};
+  let ayatTafsir = {};
   ayat.surat = surat._id;
 
   req.body.ayatNumber
     ? ayat.number = req.body.ayatNumber
     : null;
 
-  const ayatTranslation = req.body.ayatTranslation
-    ? new RegExp(req.body.ayatTranslation, "i")
+  req.body.ayatTranslation
+    ? ayatTranslation.text = new RegExp(req.body.ayatTranslation, "i")
     : null;
 
-  // req.body.ayatTafsir
-  //   ? ayat.ayatTafsir = new RegExp(req.body.ayatTafsir, "i")
-  //   : null;
+  req.body.ayatTafsir
+    ? ayatTafsir.text = new RegExp(req.body.ayatTafsir, "i")
+    : null;
 
   Ayat.find(ayat)
     .populate({
       path: 'ayatTranslation',
-      match: {text: ayatTranslation}
+      match: ayatTranslation
+    })
+    .populate({
+      path: 'ayatTafsir',
+      match: ayatTafsir
     })
     .exec()
     .then((output) => {
       //filter the null values of translation
       const cleanOutput = output.filter(function(out) {
-        return out.ayatTranslation !== null
+        if (ayatTranslation && !ayatTafsir) {
+          return out.ayatTranslation !== null
+        }
+
+        if (ayatTafsir && !ayatTranslation) {
+          return out.ayatTafsir !== null
+        }
+
+        if (ayatTranslation && ayatTafsir) {
+          return out.ayatTafsir !== null &&
+            out.ayatTranslation
+        }
       });
 
       if (cleanOutput.length === 0) {
@@ -202,10 +226,55 @@ exports.findAyat = function (req, res, next) {
         })
       }
 
-      return res.status(successResponse).json({
-        surat,
-        ayat: cleanOutput
-      })
+      if (cleanOutput.length > 1) {
+        return res.status(failedResponse).json({
+          message: `There are ${cleanOutput.length} ayat from your searches. Please specify more the ayat`
+        })
+      }
+
+      // update read status of user
+      // to ayat
+      let message = 'Success to add bookmark';
+      Ayat.findById(cleanOutput[0]._id, function (err, ayat) {
+        if (ayat.users.indexOf(user._id) === -1) {
+          ayat.users.push(user._id);
+          ayat.save(function (err) {
+            if (err) {
+              return res.status(failedResponse).json({
+                message: err
+              })
+            }
+          });
+        } else {
+          console.log('Bookmark has already been added before');
+        }
+      });
+
+      const user = req.user;
+
+      User.findById(user._id, function (err, user) {
+        if (err) {
+          return res.status(failedResponse).json({
+            message: err
+          })
+        }
+
+        user.ayat = cleanOutput[0]._id;
+        user.save(function (err) {
+          if (err) {
+            return res.status(failedResponse).json({
+              message: err
+            })
+          }
+
+          return res.status(successResponse).json({
+            ayatTafsir: cleanOutput[0].ayatTafsir.text,
+            ayatTranslation: cleanOutput[0].ayatTranslation.text,
+            message: 'Success to add bookmark',
+            surat: surat.nameLatin,
+          })
+        })
+      });
     }).catch((err) => {
     return res.status(failedResponse).json({
       message: err

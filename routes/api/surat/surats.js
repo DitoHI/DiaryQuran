@@ -17,7 +17,7 @@ router.get('/initialize', (req, res) => {
   })
 });
 
-router.get('/add',
+router.get('/read',
   userController.verifyJWT,
   userController.me,
   suratController.findSurat,

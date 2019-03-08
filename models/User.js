@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
   },
   name: {type: String, lowercase: true, required: [true, 'can\'t be blank']},
   age: Number,
-  surats: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Surat' }],
+  ayat: { type: mongoose.Schema.Types.ObjectId, ref: 'Ayat' },
 });
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken'});
