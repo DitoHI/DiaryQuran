@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b275771b-6d89-4c33-8d86-3696a5fa8437" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,8 +20,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="165">
-                <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+              <first_editor relative-caret-position="210">
+                <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               </first_editor>
               <second_editor />
             </state>
@@ -212,7 +213,7 @@
       <workItem from="1551988261252" duration="1113000" />
       <workItem from="1552010970449" duration="8871000" />
       <workItem from="1552027517385" duration="10915000" />
-      <workItem from="1552042258251" duration="15808000" />
+      <workItem from="1552042258251" duration="16498000" />
     </task>
     <task id="LOCAL-00001" summary="finish jwt to get user after register">
       <created>1551926810069</created>
@@ -291,17 +292,23 @@
       <option name="project" value="LOCAL" />
       <updated>1552055836329</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add readme">
+      <created>1552058673085</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1552058673085</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54505000" />
+    <option name="totallyTimeSpent" value="55195000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="25" width="1311" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -314,7 +321,7 @@
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="RNConsole" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3306189" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3306189" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -336,7 +343,8 @@
     <MESSAGE value="regex to find contains string done" />
     <MESSAGE value="find, create, and update bookmark of read Qur'an done" />
     <MESSAGE value="finish updating id of user in users of ayat" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish updating id of user in users of ayat" />
+    <MESSAGE value="add readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add readme" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.babelrc">
@@ -446,8 +454,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="165">
-            <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <first_editor relative-caret-position="210">
+            <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           </first_editor>
           <second_editor />
         </state>
