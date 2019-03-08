@@ -154,13 +154,13 @@ exports.findSurat = function (req, res, next) {
   })
 };
 
-exports.findAyat = function(req, res, next) {
+exports.findAyat = function (req, res, next) {
   if (req.surats.length === 0) {
     return res.status(failedResponse).json({
       message: 'Surat not found'
     })
   }
-  
+
   // if (!req.body.ayatNumber && !req.body.ayatTranslation && !req.body.ayatTafsir) {
   //   return res.status(failedResponse).json({
   //     message: 'Please input the number, translation, or tafsir of ayat'
@@ -187,21 +187,26 @@ exports.findAyat = function(req, res, next) {
   Ayat.find(ayat)
     .populate({
       path: 'ayatTranslation',
-      match: { text: ayatTranslation }
+      match: {text: ayatTranslation}
     })
     .exec()
     .then((output) => {
-    if (output.length === 0) {
-      return res.status(failedResponse).json({
-        message: 'Ayat not found'
-      })
-    }
+      //filter the null values of translation
+      const cleanOutput = output.filter(function(out) {
+        return out.ayatTranslation !== null
+      });
 
-    return res.status(successResponse).json({
-      surat,
-      ayat: output
-    })
-  }).catch((err) => {
+      if (cleanOutput.length === 0) {
+        return res.status(failedResponse).json({
+          message: 'Ayat not found'
+        })
+      }
+
+      return res.status(successResponse).json({
+        surat,
+        ayat: cleanOutput
+      })
+    }).catch((err) => {
     return res.status(failedResponse).json({
       message: err
     })

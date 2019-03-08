@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b275771b-6d89-4c33-8d86-3696a5fa8437" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Surat.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Surat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/surat/suratController.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/surat/suratController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/surat/surats.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/surat/surats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/user/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/user/users.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api/surat/suratController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="82" column="21" lean-forward="true" selection-start-line="82" selection-start-column="21" selection-end-line="86" selection-end-column="17" />
+            <state relative-caret-position="283">
+              <caret line="206" column="25" selection-start-line="206" selection-start-column="25" selection-end-line="206" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -58,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api/user/userController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="15">
               <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
             </state>
           </provider>
@@ -67,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Surat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="-49">
               <caret line="37" column="17" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="17" />
             </state>
           </provider>
@@ -143,6 +140,11 @@
               <item name="RestaurantCRUD" type="b2602c69:ProjectViewProjectNode" />
               <item name="RestaurantCRUD" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RestaurantCRUD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RestaurantCRUD" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -197,7 +199,7 @@
       <workItem from="1551988261252" duration="1113000" />
       <workItem from="1552010970449" duration="8871000" />
       <workItem from="1552027517385" duration="10915000" />
-      <workItem from="1552042258251" duration="4424000" />
+      <workItem from="1552042258251" duration="7372000" />
     </task>
     <task id="LOCAL-00001" summary="finish jwt to get user after register">
       <created>1551926810069</created>
@@ -241,11 +243,25 @@
       <option name="project" value="LOCAL" />
       <updated>1552032499811</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix etl processing dataset">
+      <created>1552046922807</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1552046922807</updated>
+    </task>
+    <task id="LOCAL-00008" summary="back to async to loop initializer">
+      <created>1552049404276</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1552049404277</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43121000" />
+    <option name="totallyTimeSpent" value="46069000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="25" width="1311" height="743" extended-state="6" />
@@ -281,7 +297,9 @@
     <MESSAGE value="add relational database of surat and ayat done" />
     <MESSAGE value="move initialize Dataset to optional if there is no data available" />
     <MESSAGE value="find User with regex of suratName and suratNameTranslation" />
-    <option name="LAST_COMMIT_MESSAGE" value="find User with regex of suratName and suratNameTranslation" />
+    <MESSAGE value="fix etl processing dataset" />
+    <MESSAGE value="back to async to loop initializer" />
+    <option name="LAST_COMMIT_MESSAGE" value="back to async to loop initializer" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.babelrc">
@@ -336,31 +354,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/user/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/user/userController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/User.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" selection-start-line="22" selection-end-line="22" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Surat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -371,10 +368,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/Surat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/user/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/user/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/surat/suratController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="82" column="21" lean-forward="true" selection-start-line="82" selection-start-column="21" selection-end-line="86" selection-end-column="17" />
+        <state relative-caret-position="283">
+          <caret line="206" column="25" selection-start-line="206" selection-start-column="25" selection-end-line="206" selection-end-column="25" />
         </state>
       </provider>
     </entry>
