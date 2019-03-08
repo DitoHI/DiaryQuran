@@ -18,7 +18,8 @@ exports.initializeDataset = function () {
       }
 
       const surats = [];
-      let i = 0;
+      let i = 0
+        , j = 0;
       suratsFile.forEach((suratUnClean) => {
         const suratUnCleanDir = `${suratDir}${suratUnClean}`;
         fs.readFile(suratUnCleanDir, 'utf8', function (errChild, suratClean) {
@@ -92,7 +93,8 @@ exports.initializeDataset = function () {
                 if (err) {
                   return reject(err);
                 }
-                console.log(`${surat.name} of ayat ${ayat.number} saved`);
+                console.log(`${surat.nameLatin} of ayat ${ayat.number} saved[${j}]`);
+                ++j;
               });
             }
 
@@ -102,7 +104,7 @@ exports.initializeDataset = function () {
             if (err) {
               return reject(err);
             }
-            console.log(`${surat.name} saved`);
+            console.log(`Surat ${surat.nameLatin} done`);
           });
 
           if (i === suratsFile.length - 1) {
@@ -114,6 +116,8 @@ exports.initializeDataset = function () {
 
         });
       });
+
+      console.log(`Finished`);
     })
   })
 };
