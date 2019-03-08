@@ -9,7 +9,7 @@ router.post('/create', (req, res) => {
 
 router.get('/me', userController.verifyJWT, userController.me, (req, res) => {
   return res.status(successResponse).json({
-    user: req.user
+    user: req.user,
   })
 });
 

@@ -47,50 +47,62 @@ exports.initializeDataset = function () {
             sumAyat: suratObject['number_of_ayah']
           });
 
-          surat.save().then(function () {
-            // loop through ayat
-            for (var key in suratTextObject) {
-              if (suratTextObject.hasOwnProperty(key)
-                && suratTranslationObject['text'].hasOwnProperty(key)
-                && suratTafsirObject['text'].hasOwnProperty(key)) {
-                const ayat = new Ayat({
-                  surat: surat._id,
-                  _id: new mongoose.Types.ObjectId(),
-                  text: suratTextObject[key],
-                });
-                surat["ayat"].push(ayat._id);
-                surat.save(function (err) {
+          // loop through ayat
+          for (var key in suratTextObject) {
+
+            if (suratTextObject.hasOwnProperty(key)
+              && suratTranslationObject['text'].hasOwnProperty(key)
+              && suratTafsirObject['text'].hasOwnProperty(key)) {
+
+              const ayat = new Ayat({
+                surat: surat._id,
+                _id: new mongoose.Types.ObjectId(),
+                number: key,
+                text: suratTextObject[key],
+              });
+
+              surat["ayat"].push(ayat._id);
+
+              // save the translation and tafsir
+              const ayatTranslation = new AyatTranslation({
+                _id: new mongoose.Types.ObjectId(),
+                ayat: ayat._id,
+                text: suratTranslationObject['text'][key]
+              });
+              ayatTranslation.save(function (err) {
+                if (err) {
                   return reject(err);
-                });
+                }
+              });
 
-                ayat.save(function (err) {
-                  if (err) {
-                    return reject(err);
-                  }
+              const ayatTafsir = new AyatTafsir({
+                _id: new mongoose.Types.ObjectId(),
+                ayat: ayat._id,
+                text: suratTafsirObject['text'][key]
+              });
+              ayatTafsir.save(function (err) {
+                if (err) {
+                  return reject(err);
+                }
+              });
 
-                  // save the translation and tafsir
-                  const ayatTranslation = new AyatTranslation({
-                    ayat: ayat._id,
-                    text: suratTranslationObject['text'][key]
-                  });
-                  ayatTranslation.save(function (err) {
-                    return reject(err);
-                  });
-                  const ayatTafsir = new AyatTafsir({
-                    ayat: ayat._id,
-                    text: suratTafsirObject['text'][key]
-                  });
-                  ayatTafsir.save(function (err) {
-                    return reject(err);
-                  });
-                });
-              }
+              ayat["ayatTranslation"] = ayatTranslation._id;
+              ayat["ayatTafsir"] = ayatTafsir._id;
+              ayat.save(function (err) {
+                if (err) {
+                  return reject(err);
+                }
+                console.log(`${surat.name} of ayat ${ayat.number} saved`);
+              });
             }
 
-          }).then(function () {
-            console.log('Surat saved');
-          }, function (err) {
-            return reject(err);
+          }
+
+          surat.save(function (err) {
+            if (err) {
+              return reject(err);
+            }
+            console.log(`${surat.name} saved`);
           });
 
           if (i === suratsFile.length - 1) {
@@ -109,7 +121,7 @@ exports.initializeDataset = function () {
 exports.findSurat = function (req, res, next) {
   if (!req.body.suratNameLatin && !req.body.suratNumber && !req.body.suratNameTranslation) {
     return res.status(failedResponse).json({
-      message: 'Please input the name or the number of surat'
+      message: 'Please input the name, the number, or translation of name of surat'
     })
   }
 
@@ -128,12 +140,67 @@ exports.findSurat = function (req, res, next) {
 
   Surat.find(surat).exec().then((output) => {
     if (output) {
-      return res.send(output);
+      req.surats = output;
+      next();
     }
-    return res.send('empty');
   }).catch(err => {
     return res.status(failedResponse).json({
       message: err
     })
   })
+};
+
+exports.findAyat = function(req, res, next) {
+  if (req.surats.length === 0) {
+    return res.status(failedResponse).json({
+      message: 'Surat not found'
+    })
+  }
+  
+  // if (!req.body.ayatNumber && !req.body.ayatTranslation && !req.body.ayatTafsir) {
+  //   return res.status(failedResponse).json({
+  //     message: 'Please input the number, translation, or tafsir of ayat'
+  //   })
+  // }
+
+  const surat = req.surats[0];
+
+  let ayat = {};
+  ayat.surat = surat._id;
+
+  req.body.ayatNumber
+    ? ayat.number = req.body.ayatNumber
+    : null;
+
+  const ayatTranslation = req.body.ayatTranslation
+    ? new RegExp(req.body.ayatTranslation, "i")
+    : null;
+
+  // req.body.ayatTafsir
+  //   ? ayat.ayatTafsir = new RegExp(req.body.ayatTafsir, "i")
+  //   : null;
+
+  Ayat.find(ayat)
+    .populate({
+      path: 'ayatTranslation',
+      match: { text: ayatTranslation }
+    })
+    .exec()
+    .then((output) => {
+    if (output.length === 0) {
+      return res.status(failedResponse).json({
+        message: 'Ayat not found'
+      })
+    }
+
+    return res.status(successResponse).json({
+      surat,
+      ayat: output
+    })
+  }).catch((err) => {
+    return res.status(failedResponse).json({
+      message: err
+    })
+  })
+
 };
