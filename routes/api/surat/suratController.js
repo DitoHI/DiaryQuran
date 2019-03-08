@@ -236,18 +236,19 @@ exports.findAyat = function (req, res, next) {
       // to ayat
       let message = 'Success to add bookmark';
       Ayat.findById(cleanOutput[0]._id, function (err, ayat) {
-        if (ayat.users.indexOf(user._id) === -1) {
-          ayat.users.push(user._id);
-          ayat.save(function (err) {
-            if (err) {
-              return res.status(failedResponse).json({
-                message: err
-              })
-            }
-          });
-        } else {
-          console.log('Bookmark has already been added before');
+        if (ayat.users.indexOf(user._id) >= -1) {
+          const indexOfPosition = ayat.users.indexOf(user._id);
+          ayat.users = ayat.users.slice(indexOfPosition + 1);
         }
+
+        ayat.users.push(user._id);
+        ayat.save(function (err) {
+          if (err) {
+            return res.status(failedResponse).json({
+              message: err
+            })
+          }
+        });
       });
 
       const user = req.user;
