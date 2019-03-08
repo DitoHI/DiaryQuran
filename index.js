@@ -25,6 +25,7 @@ db.once('open', () => {
 
 // connect to routes and models
 require('./models/User');
+require('./models/Surat');
 app.use(require('./routes'));
 
 const PORT = process.env.PORT;

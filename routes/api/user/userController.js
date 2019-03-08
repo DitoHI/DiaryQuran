@@ -18,6 +18,7 @@ exports.saveUser = function (req, res) {
 
   const user = new User();
 
+  user._id = new mongoose.Types.ObjectId();
   user.username = req.body.username;
   user.email = req.body.email;
   user.name = req.body.name;

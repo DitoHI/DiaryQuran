@@ -6,21 +6,27 @@ const salt = parseInt(process.env.DEFAULT_SALT_ROUNDS);
 const SECRET = process.env.SECRET;
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String,  lowercase: true, unique: true, required: [true, 'can\'t be blank'] },
-  email: { type: String,  lowercase: true, unique: true, required: [true, 'can\'t be blank'],
-    match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
-  name: { type: String,  lowercase: true, required: [true, 'can\'t be blank'] },
+  _id: mongoose.Schema.Types.ObjectId,
+  username: {type: String, lowercase: true, unique: true, required: [true, 'can\'t be blank']},
+  email: {
+    type: String, lowercase: true, unique: true, required: [true, 'can\'t be blank'],
+    match: [/\S+@\S+\.\S+/, 'is invalid'], index: true
+  },
+  password: {
+    type: String, required: [true, 'can\'t be blank']
+  },
+  name: {type: String, lowercase: true, required: [true, 'can\'t be blank']},
   age: Number,
-  password: String,
+  surats: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Surat' }],
 });
 
-UserSchema.plugin(uniqueValidator, { message: 'is already taken' });
+UserSchema.plugin(uniqueValidator, {message: 'is already taken'});
 
-UserSchema.methods.setPassword = async function(password) {
+UserSchema.methods.setPassword = async function (password) {
   this.password = await bcrypt.hash(password, salt);
 };
 
-UserSchema.methods.generateJWT = function() {
+UserSchema.methods.generateJWT = function () {
   const today = new Date();
   const exp = new Date(today);
   exp.setDate(today.getDate() + 60);
@@ -32,7 +38,7 @@ UserSchema.methods.generateJWT = function() {
   }, SECRET);
 };
 
-UserSchema.methods.toAuthJSON = function() {
+UserSchema.methods.toAuthJSON = function () {
   return {
     username: this.username,
     email: this.email,
