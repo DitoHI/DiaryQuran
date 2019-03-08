@@ -5,8 +5,8 @@ const successResponse = process.env.STATUS_CODE_SUCCESS;
 const failedResponse = process.env.STATUS_CODE_FAILED;
 
 // user must login or create account to get the access
-router.get('/add', userController.verifyJWT, userController.me, (req, res) => {
-  suratController.addSurat(req).then((result) => {
+router.get('/initialize', (req, res) => {
+  suratController.initializeDataset().then((result) => {
     res.status(successResponse).json({
       surat: result
     })

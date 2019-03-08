@@ -10,8 +10,7 @@ const failedResponse = process.env.STATUS_CODE_FAILED;
 
 const suratDir = process.env.SURAT_FILE_DIR;
 
-exports.addSurat = function (req) {
-  const user = req.user;
+exports.initializeDataset = function () {
   return new Promise((resolve, reject) => {
     fs.readdir(suratDir, (err, suratsFile) => {
       if (err) {
@@ -46,7 +45,6 @@ exports.addSurat = function (req) {
             sourceTafsir: suratTafsirObject['source'],
             sumAyat: suratObject['number_of_ayah']
           });
-          surat["users"].push(user._id);
 
           surat.save().then(function () {
             // loop through ayat
@@ -96,7 +94,7 @@ exports.addSurat = function (req) {
 
           if (i === suratsFile.length - 1) {
             return resolve(
-              `Successfully added ${suratsFile.length} surat]`
+              `Successfully added ${suratsFile.length} surat`
             )
           }
           ++i;
@@ -105,4 +103,8 @@ exports.addSurat = function (req) {
       });
     })
   })
+};
+
+exports.addSurat = function (req) {
+  const user = req.user;
 };
