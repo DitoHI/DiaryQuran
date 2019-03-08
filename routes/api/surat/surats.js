@@ -17,4 +17,8 @@ router.get('/initialize', (req, res) => {
   })
 });
 
+router.get('/add', userController.verifyJWT, userController.me, (req, res, next) => {
+  suratController.findSurat(req, res, next);
+});
+
 module.exports = router;

@@ -39,6 +39,7 @@ exports.initializeDataset = function () {
           // add surat to database
           const surat = new Surat({
             _id: new mongoose.Types.ObjectId(),
+            number: keySuratObject,
             name: suratObject.name,
             nameLatin: suratObject['name_latin'],
             nameTranslation: suratTranslationObject['name'],
@@ -105,6 +106,34 @@ exports.initializeDataset = function () {
   })
 };
 
-exports.addSurat = function (req) {
-  const user = req.user;
+exports.findSurat = function (req, res, next) {
+  if (!req.body.suratNameLatin && !req.body.suratNumber && !req.body.suratNameTranslation) {
+    return res.status(failedResponse).json({
+      message: 'Please input the name or the number of surat'
+    })
+  }
+
+  let surat = {};
+  req.body.suratNameLatin
+    ? surat.nameLatin = new RegExp(req.body.suratNameLatin, "i")
+    : null;
+
+  req.body.suratNumber
+    ? surat.number = req.body.suratNumber
+    : null;
+
+  req.body.suratNameTranslation
+    ? surat.nameTranslation = new RegExp(req.body.suratNameTranslation, "i")
+    : null;
+
+  Surat.find(surat).exec().then((output) => {
+    if (output) {
+      return res.send(output);
+    }
+    return res.send('empty');
+  }).catch(err => {
+    return res.status(failedResponse).json({
+      message: err
+    })
+  })
 };

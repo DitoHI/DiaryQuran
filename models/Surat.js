@@ -5,6 +5,9 @@ const uniqueValidator = require('mongoose-unique-validator');
 const SuratSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  number: {
+    type: Number, required: [true, 'can\'t be blank'], unique: true,
+  },
   name: {
     type: String, required: [true, 'can\'t be blank'], unique: true,
   },
