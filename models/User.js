@@ -23,10 +23,6 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken'});
 
-UserSchema.methods.setPassword = async function (password) {
-  this.password = await bcrypt.hash(password, salt);
-};
-
 UserSchema.methods.generateJWT = function () {
   const today = new Date();
   const exp = new Date(today);

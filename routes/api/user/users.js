@@ -4,6 +4,7 @@ const successResponse = process.env.STATUS_CODE_SUCCESS;
 const failedResponse = process.env.STATUS_CODE_FAILED;
 
 const { upload } = require('../../../config');
+const fs = require('fs');
 
 router.post('/create', upload.single('image'), (req, res) => {
   userController.saveUser(req, res).then((result) => {
@@ -11,9 +12,17 @@ router.post('/create', upload.single('image'), (req, res) => {
       user: result
     })
   }).catch((err) => {
-    res.status(failedResponse).json({
-      message: err
-    })
+    // delete file if failed register
+    fs.unlink(req.file.path, function (errDelete) {
+      if (errDelete) {
+        res.status(failedResponse).json({
+          message: errDelete
+        })
+      }
+      res.status(failedResponse).json({
+        message: err
+      })
+    });
   })
 });
 

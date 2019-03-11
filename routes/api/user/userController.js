@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const successResponse = process.env.STATUS_CODE_SUCCESS;
 const failedResponse = process.env.STATUS_CODE_FAILED;
 const SECRET = process.env.SECRET;
+const SALT = parseInt(process.env.DEFAULT_SALT_ROUNDS);
 
 const displayParameters = 'email username name age';
 
@@ -24,13 +25,21 @@ exports.saveUser = function (req, res) {
   user.name = req.body.name;
   user.age = req.body.age;
   user.photo = req.file.path;
-  user.setPassword(req.body.password);
 
   return new Promise((resolve, reject) => {
-    user.save().then(function () {
-      return resolve(user.toAuthJSON());
-    }).catch((err) => {
-      return reject(err);
+    // hash the password
+    bcrypt.hash(req.body.password, SALT, function (err, hash) {
+      if (err) {
+        reject(err);
+      }
+      user.password = hash;
+
+      user.save().then(function () {
+        return resolve(user.toAuthJSON());
+      }).catch((err) => {
+        return reject(err);
+      });
+
     });
   });
 };
