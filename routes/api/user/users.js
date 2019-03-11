@@ -17,7 +17,7 @@ router.post('/login', (req, res) => {
   userController.login(req, res);
 });
 
-router.get('/users', userController.listUsers, (req, res) => {
+router.get('/list', userController.listUsers, (req, res) => {
   return res.status(successResponse).json({
     users: req.users,
   })
