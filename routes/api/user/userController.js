@@ -44,7 +44,7 @@ exports.saveUser = function (req, res) {
   });
 };
 
-exports.listUsers = function(req, res, next) {
+exports.listUsers = function (req, res, next) {
   User.find().exec().then((output) => {
     req.users = output;
     next();
@@ -123,6 +123,70 @@ exports.verifyJWT = function (req, res, next) {
 
     req.decoded = decoded;
     next();
+  });
+};
+
+exports.updateUser = function (req, res) {
+  if (!req.user) {
+    return res.status(failedResponse).json({
+      message: process.env.LOG_TOKEN_EXPIRED
+    })
+  }
+
+  return new Promise((resolve, reject) => {
+    // user must input password first
+    // to update their data
+    if (!req.body.password) {
+      return reject('You must input your password to update your data');
+    }
+
+    const user = {};
+
+    req.body.username
+      ? user.username = req.body.username
+      : null;
+
+    req.body.email
+      ? user.email = req.body.email
+      : null;
+
+    req.body.name
+      ? user.name = req.body.name
+      : null;
+
+    req.body.age
+      ? user.age = req.body.age
+      : null;
+
+    req.file
+      ? user.photo = req.file.path
+      : null;
+
+    console.log(req.file);
+
+    User.findById(req.user._id, function (err, user) {
+      if (err) {
+        return reject('Failed to get your data');
+      }
+
+      bcrypt.compare(req.body.password, user.password, function (err, valid) {
+        if (err) {
+          return reject('Failed to compare your password');
+        }
+
+        if (!valid) {
+          return reject(process.env.LOG_FAILED_PASSWORD);
+        }
+      })
+    });
+
+    User.findByIdAndUpdate(req.user._id, user, function (err) {
+      if (err) {
+        return reject('Failed to get your data');
+      }
+
+      return resolve(user);
+    })
   });
 };
 

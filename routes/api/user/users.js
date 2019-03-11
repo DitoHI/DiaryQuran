@@ -6,9 +6,10 @@ const failedResponse = process.env.STATUS_CODE_FAILED;
 const { upload } = require('../../../config');
 const fs = require('fs');
 
-router.post('/create', upload.single('image'), (req, res) => {
+router.post('/create', upload.single('photo'), (req, res) => {
   userController.saveUser(req, res).then((result) => {
     res.status(successResponse).json({
+      message: 'Successfully create new user',
       user: result
     })
   }).catch((err) => {
@@ -39,6 +40,31 @@ router.post('/login', (req, res) => {
 router.get('/list', userController.listUsers, (req, res) => {
   return res.status(successResponse).json({
     users: req.users,
+  })
+});
+
+router.put('/update',
+  userController.verifyJWT,
+  userController.me,
+  upload.single('photo'),
+  (req, res) => {
+  userController.updateUser(req, res).then((result) => {
+    res.status(successResponse).json({
+      message: 'Successfully update user',
+      user: result
+    })
+  }).catch((err) => {
+    // delete file if failed to update
+    fs.unlink(req.file.path, function (errDelete) {
+      if (errDelete) {
+        res.status(failedResponse).json({
+          message: errDelete
+        })
+      }
+      res.status(failedResponse).json({
+        message: err
+      })
+    });
   })
 });
 
