@@ -36,6 +36,17 @@ exports.saveUser = function (req, res) {
   });
 };
 
+exports.listUsers = function(req, res, next) {
+  User.find().exec().then((output) => {
+    req.users = output;
+    next();
+  }).catch((err) => {
+    return res.status(failedResponse).json({
+      message: err
+    })
+  });
+};
+
 exports.me = function (req, res, next) {
   const decoded = req.decoded;
 
