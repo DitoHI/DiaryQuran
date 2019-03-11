@@ -17,8 +17,8 @@ const UserSchema = new mongoose.Schema({
   },
   name: {type: String, lowercase: true, required: [true, 'can\'t be blank']},
   age: Number,
-  ayat: { type: mongoose.Schema.Types.ObjectId, ref: 'Ayat' },
   photo: String,
+  ayat: { type: mongoose.Schema.Types.ObjectId, ref: 'Ayat' },
 });
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken'});
@@ -45,6 +45,7 @@ UserSchema.methods.toAuthJSON = function () {
     email: this.email,
     name: this.name,
     age: this.age,
+    photo: this.photo,
     token: this.generateJWT(),
   };
 };

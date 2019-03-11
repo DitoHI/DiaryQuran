@@ -9,6 +9,7 @@ require('dotenv/config');
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));
 
 // connect to mongoose
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });

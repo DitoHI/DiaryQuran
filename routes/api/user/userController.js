@@ -23,16 +23,15 @@ exports.saveUser = function (req, res) {
   user.email = req.body.email;
   user.name = req.body.name;
   user.age = req.body.age;
+  user.photo = req.file.path;
   user.setPassword(req.body.password);
 
-  user.save().then(function () {
-    return res.status(successResponse).json({
-      user: user.toAuthJSON()
-    })
-  }).catch((err) => {
-    return res.status(failedResponse).json({
-      message: err
-    })
+  return new Promise((resolve, reject) => {
+    user.save().then(function () {
+      return resolve(user.toAuthJSON());
+    }).catch((err) => {
+      return reject(err);
+    });
   });
 };
 
@@ -116,4 +115,25 @@ exports.verifyJWT = function (req, res, next) {
     req.decoded = decoded;
     next();
   });
+};
+
+exports.deleteUser = function (req, res) {
+  if (!req.user) {
+    return res.status(failedResponse).json({
+      message: process.env.LOG_TOKEN_EXPIRED
+    })
+  }
+
+  User.findByIdAndRemove(req.user._id, function (err, user) {
+    if (err) {
+      return res.status(failedResponse).json({
+        message: err
+      })
+    }
+
+    res.status(successResponse).json({
+      message: 'User deleted',
+      user: user
+    })
+  })
 };
