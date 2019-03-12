@@ -162,8 +162,6 @@ exports.updateUser = function (req, res) {
       ? user.photo = req.file.path
       : null;
 
-    console.log(req.file);
-
     User.findById(req.user._id, function (err, user) {
       if (err) {
         return reject('Failed to get your data');

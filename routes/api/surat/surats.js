@@ -17,12 +17,12 @@ router.get('/initialize', (req, res) => {
   })
 });
 
-router.get('/read',
-  userController.verifyJWT,
-  userController.me,
-  suratController.findSurat,
-  suratController.findAyat,
-  (req, res) => {
+router.get('/read'
+  , userController.verifyJWT
+  , userController.me
+  , suratController.findSurat
+  , suratController.findAyatFromSurat
+  , (req, res) => {
   if (req.ayats) {
     res.status(successResponse).json({
       ayat: req.ayats,
@@ -37,5 +37,13 @@ router.get('/read',
   }
 
   });
+
+router.get('/yourRead'
+  , userController.verifyJWT
+  , userController.me
+  , suratController.findAyatById
+  , (req, res) => {
+  return res.status(successResponse).json(req.ayat)
+});
 
 module.exports = router;

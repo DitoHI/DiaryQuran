@@ -155,7 +155,7 @@ exports.findSurat = function (req, res, next) {
   })
 };
 
-exports.findAyat = function (req, res, next) {
+exports.findAyatFromSurat = function (req, res, next) {
   if (req.surats.length === 0) {
     return res.status(failedResponse).json({
       message: 'Surat not found'
@@ -285,4 +285,24 @@ exports.findAyat = function (req, res, next) {
     })
   })
 
+};
+
+exports.findAyatById = function (req, res, next) {
+  console.log(req.user);
+  if (!req.user.ayat) {
+    return res.status(failedResponse).json({
+      message: 'You haven\'t read any Qur\'an'
+    });
+  }
+
+  Ayat.findById(req.user.ayat, function (err, ayat) {
+    if (err) {
+      return res.status(failedResponse).json({
+        message: err
+      })
+    }
+
+    req.ayats = ayat;
+    next();
+  })
 };
