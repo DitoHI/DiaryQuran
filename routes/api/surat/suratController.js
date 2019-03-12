@@ -236,11 +236,13 @@ exports.findAyat = function (req, res, next) {
       // to ayat
       let message = 'Success to add bookmark';
       Ayat.findById(cleanOutput[0]._id, function (err, ayat) {
-        if (ayat.users.indexOf(user._id) >= -1) {
-          const indexOfPosition = ayat.users.indexOf(user._id);
-          ayat.users = ayat.users.slice(indexOfPosition + 1);
+        if (ayat.users.indexOf(req.user._id) > -1) {
+          const indexOfPosition = ayat.users.indexOf(req.user._id);
+          ayat.users.splice(indexOfPosition, 1);
         }
 
+        // testing
+        // ayat.users = [];
         ayat.users.push(user._id);
         ayat.save(function (err) {
           if (err) {
@@ -268,12 +270,13 @@ exports.findAyat = function (req, res, next) {
             })
           }
 
-          return res.status(successResponse).json({
+          req.ayats = {
+            ayatNumber: cleanOutput[0].number,
             ayatTafsir: cleanOutput[0].ayatTafsir.text,
             ayatTranslation: cleanOutput[0].ayatTranslation.text,
-            message: 'Success to add bookmark',
-            surat: surat.nameLatin,
-          })
+          };
+
+          next();
         })
       });
     }).catch((err) => {

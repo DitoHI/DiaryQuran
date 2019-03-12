@@ -21,7 +21,21 @@ router.get('/read',
   userController.verifyJWT,
   userController.me,
   suratController.findSurat,
-  suratController.findAyat
-  );
+  suratController.findAyat,
+  (req, res) => {
+  if (req.ayats) {
+    res.status(successResponse).json({
+      ayat: req.ayats,
+      surat: {
+        suratName: req.surats[0].name,
+        suratNameLatin: req.surats[0].nameLatin,
+        suratNameTranslation: req.surats[0].nameTranslation,
+        suratNumber: req.surats[0].number,
+      },
+      message: 'Success to add bookmark',
+    })
+  }
+
+  });
 
 module.exports = router;
