@@ -189,22 +189,17 @@ exports.updateUser = function (req, res) {
 };
 
 exports.deleteUser = function (req, res) {
-  if (!req.user) {
-    return res.status(failedResponse).json({
-      message: process.env.LOG_TOKEN_EXPIRED
-    })
-  }
-
-  User.findByIdAndRemove(req.user._id, function (err, user) {
-    if (err) {
-      return res.status(failedResponse).json({
-        message: err
-      })
+  return new Promise((resolve, reject) => {
+    if (!req.user) {
+      return reject(process.env.LOG_TOKEN_EXPIRED);
     }
 
-    res.status(successResponse).json({
-      message: 'User deleted',
-      user: user
+    User.findByIdAndRemove(req.user._id, function (err, user) {
+      if (err) {
+        return reject(err);
+      }
+
+      return resolve(user);
     })
-  })
+  });
 };

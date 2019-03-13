@@ -69,7 +69,26 @@ router.put('/update',
 });
 
 router.delete('/delete', userController.verifyJWT, userController.me, (req, res) => {
-  userController.deleteUser(req, res);
+  userController.deleteUser(req, res).then((result) => {
+    // delete image profile
+    // after delete
+    fs.unlink(result.photo, (err) => {
+      if (err) {
+        return res.status(failedResponse).json({
+          message: 'Failed to delete the image, but user has been deleted',
+          user: result
+        })
+      }
+      return res.status(successResponse).json({
+        message: 'User deleted',
+        user: result
+      })
+    });
+  }).catch((err) => {
+    return res.status(failedResponse).json({
+      message: err
+    })
+  });
 });
 
 module.exports = router;
