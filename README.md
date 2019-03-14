@@ -12,13 +12,22 @@ Extract dataset from [quran-json](https://github.com/rioastamal/quran-json) by R
 * Upload image with **multer** and automatically delete it if the requirements of create/update user is not fulfilled
 * ETL Processing using FileSystem to read data from json
 * Get data and filter the value by using `regex`
+* Populate with multiple collections. Collection of ayat have more than two references to another collections.
 
 ### Result of Bookmarked Qur'an
 ```json
 {
-  "ayatTafsir": "Ayat ini menerangkan bahwa Al-Qur‘an tidak dapat diragukan, karena ia wahyu Allah swt yang diturunkan kepada Nabi Muhammad saw Nabi yang terakhir dengan perantaraan Jibril a.s. :\n\nDan sungguh (Al-Qur‘an) ini benar-benar diturunkan oleh Tuhan seluruh alam, yang dibawa oleh ar-Ruh al-Amin (Jibril) (asy-Syu‘ara‘/26: 192-193).\n\nYang dimaksud “Al-Kitab” (wahyu) di sini ialah Al-Qur‘an. Disebut “Al-Kitab” sebagai isyarat bahwa Al-Qur‘an harus ditulis, karena itu Nabi Muhammad saw memerintahkan para sahabat menulis ayat-ayat Al-Qur‘an. \n\nAl-Qur‘an merupakan bimbingan bagi orang yang bertakwa, sehingga dia berbahagia hidup di dunia dan di akhirat nanti. Orang yang bertakwa ialah orang yang memelihara dan menjaga dirinya dari azab Allah dengan selalu melaksanakan perintah-perintah Allah dan menjauhi larangan-larangan-Nya. Di antara tanda-tanda orang yang bertakwa ialah sebagaimana yang tersebut pada ayat-ayat berikut:",
-  "ayatTranslation": "Kitab (Al-Qur'an) ini tidak ada keraguan padanya; petunjuk bagi mereka yang bertakwa,",
-  "message": "Success to add bookmark",
-  "surat": "Al-Baqarah"
+  "ayat": {
+    "ayatNumber": 2,
+    "ayatTafsir": "Dalam ayat-ayat berikut ini, Allah memerintahkan kepada Nabi Muhammad dan seluruh kaum Muslimin supaya selalu berlindung kepada Tuhan Pencipta semua makhluk agar terpelihara dari segala macam kejahatan atau akibat kejahatan yang ditimbulkan oleh makhluk-makhluk yang telah diciptakan-Nya.",
+    "ayatTranslation": "dari kejahatan (makhluk yang) Dia ciptakan,"
+  },
+  "surat": {
+    "suratName": "الفلق",
+    "suratNameLatin": "Al-Falaq",
+    "suratNameTranslation": "Subuh",
+    "suratNumber": 113
+  },
+  "message": "Success to add bookmark"
 }
 ```
