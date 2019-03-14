@@ -288,21 +288,49 @@ exports.findAyatFromSurat = function (req, res, next) {
 };
 
 exports.findAyatById = function (req, res, next) {
-  console.log(req.user);
-  if (!req.user.ayat) {
-    return res.status(failedResponse).json({
-      message: 'You haven\'t read any Qur\'an'
-    });
-  }
-
-  Ayat.findById(req.user.ayat, function (err, ayat) {
+  User.findById(req.user._id, function (err, result) {
     if (err) {
       return res.status(failedResponse).json({
-        message: err
+        message: 'Failed in finding user'
       })
     }
 
-    req.ayats = ayat;
-    next();
-  })
+    if (!result.ayat) {
+      return res.status(failedResponse).json({
+        message: 'You haven\'t read any Qur\'an'
+      });
+    }
+
+    Ayat.findById(result.ayat, function (err, ayat) {
+      if (err) {
+        return res.status(failedResponse).json({
+          message: err
+        })
+      }
+
+      req.ayats = ayat;
+      next();
+    })
+  });
+};
+
+exports.getReadFromUser = function (req, res, next) {
+  // output
+  // surat, ayats, ayatTranslation, ayatTafsir
+  Ayat
+    .findById(req.ayats._id)
+    .populate('surat')
+    .populate('ayatTranslation')
+    .populate('ayatTafsir')
+    .exec((err, ayat) => {
+      if (err) {
+        return res.status(failedResponse).json({
+          message: err
+        })
+      }
+      req.surat = ayat.surat;
+      req.ayatTranslation = ayat.ayatTranslation;
+      req.ayatTafsir = ayat.ayatTafsir;
+      next();
+    })
 };

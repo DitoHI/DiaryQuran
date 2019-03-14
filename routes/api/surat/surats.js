@@ -23,34 +23,54 @@ router.get('/read'
   , suratController.findSurat
   , suratController.findAyatFromSurat
   , (req, res) => {
-  if (req.ayats) {
-    res.status(successResponse).json({
-      ayat: req.ayats,
-      surat: {
-        suratName: req.surats[0].name,
-        suratNameLatin: req.surats[0].nameLatin,
-        suratNameTranslation: req.surats[0].nameTranslation,
-        suratNumber: req.surats[0].number,
-      },
-      message: 'Success to add bookmark',
-    })
-  }
+    if (req.ayats) {
+      res.status(successResponse).json({
+        ayat: req.ayats,
+        surat: {
+          suratName: req.surats[0].name,
+          suratNameLatin: req.surats[0].nameLatin,
+          suratNameTranslation: req.surats[0].nameTranslation,
+          suratNumber: req.surats[0].number,
+        },
+        message: 'Success to add bookmark',
+      })
+    }
 
   });
 
-router.get('/yourRead'
-  , userController.verifyJWT
-  , userController.me
-  , suratController.findAyatById
-  , (req, res) => {
-  return res.status(successResponse).json(req.ayat)
-});
-
-router.put('/formatRead',
+router.put('/getRead',
   userController.verifyJWT,
   userController.me,
+  suratController.findAyatById,
+  suratController.getReadFromUser,
   (req, res) => {
-  res.send(req.user);
-});
+    return res.status(successResponse).json({
+      surat: {
+        name: req.surat.name,
+        nameLatin: req.surat.nameLatin,
+        nameTranslation: req.surat.nameTranslation,
+        sourceTafsir: req.surat.sourceTafsir,
+      },
+      ayat: {
+        number: req.ayats.number,
+        text: req.ayats.text,
+      },
+      ayatTranslation: {
+        text: req.ayatTranslation.text,
+      },
+      ayatTafsir: {
+        text: req.ayatTafsir.text,
+      }
+    })
+  });
+
+router.delete('/deleteRead',
+  userController.verifyJWT,
+  userController.me,
+  suratController.findAyatById,
+  (req, res) => {
+
+  }
+);
 
 module.exports = router;
