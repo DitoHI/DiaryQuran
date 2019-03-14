@@ -18,8 +18,6 @@ router.get('/initialize', (req, res) => {
 });
 
 router.get('/read'
-  , userController.verifyJWT
-  , userController.me
   , suratController.findSurat
   , suratController.findAyatFromSurat
   , (req, res) => {
@@ -39,8 +37,6 @@ router.get('/read'
   });
 
 router.put('/getRead',
-  userController.verifyJWT,
-  userController.me,
   suratController.findAyatById,
   suratController.getReadFromUser,
   (req, res) => {
@@ -65,8 +61,6 @@ router.put('/getRead',
   });
 
 router.delete('/deleteRead',
-  userController.verifyJWT,
-  userController.me,
   suratController.findAyatById,
   suratController.deleteAyatFromUser,
   (req, res) => {

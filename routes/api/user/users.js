@@ -27,7 +27,7 @@ router.post('/create', upload.single('photo'), (req, res) => {
   })
 });
 
-router.get('/me', userController.verifyJWT, userController.me, (req, res) => {
+router.get('/me', (req, res) => {
   return res.status(successResponse).json({
     user: req.user,
   })
@@ -44,8 +44,6 @@ router.get('/list', userController.listUsers, (req, res) => {
 });
 
 router.put('/update',
-  userController.verifyJWT,
-  userController.me,
   upload.single('photo'),
   (req, res) => {
   userController.updateUser(req, res).then((result) => {
@@ -68,7 +66,7 @@ router.put('/update',
   })
 });
 
-router.delete('/delete', userController.verifyJWT, userController.me, (req, res) => {
+router.delete('/delete', (req, res) => {
   userController.deleteUser(req, res).then((result) => {
     // delete image profile
     // after delete

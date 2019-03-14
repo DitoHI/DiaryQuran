@@ -55,6 +55,14 @@ exports.listUsers = function (req, res, next) {
   });
 };
 
+exports.showMe = async (userId) => {
+  return User.findById(userId).exec().then((output) => {
+    return output;
+  }).catch((err) => {
+    return null
+  });
+};
+
 exports.me = function (req, res, next) {
   const decoded = req.decoded;
 
