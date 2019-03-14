@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b275771b-6d89-4c33-8d86-3696a5fa8437" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/surat/suratController.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/surat/suratController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/surat/surats.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/surat/surats.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/user/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/user/userController.js" afterDir="false" />
     </list>
@@ -29,26 +30,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api/surat/surats.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+            <state relative-caret-position="256">
+              <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/api/user/userController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api/surat/suratController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2250">
-              <caret line="290" column="24" selection-start-line="290" selection-start-column="24" selection-end-line="290" selection-end-column="24" />
+            <state relative-caret-position="286">
+              <caret line="342" column="4" selection-start-line="342" selection-start-column="4" selection-end-line="342" selection-end-column="4" />
               <folding>
                 <element signature="e#485#3982#0" />
                 <element signature="e#4031#4797#0" />
@@ -60,8 +52,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Surat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
+            <state relative-caret-position="195">
               <caret line="37" column="17" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/api/user/userController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -69,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/User.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="7" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="7" />
+            <state relative-caret-position="375">
+              <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -99,6 +100,8 @@
       <find>b</find>
       <find>save</find>
       <find>console.log</find>
+      <find>photo</find>
+      <find>req.user</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,10 +124,10 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/routes/api/surat/suratController.js" />
         <option value="$PROJECT_DIR$/routes/api/user/users.js" />
         <option value="$PROJECT_DIR$/routes/api/surat/surats.js" />
         <option value="$PROJECT_DIR$/routes/api/user/userController.js" />
+        <option value="$PROJECT_DIR$/routes/api/surat/suratController.js" />
       </list>
     </option>
   </component>
@@ -159,17 +162,6 @@
               <item name="diaryQuran" type="b2602c69:ProjectViewProjectNode" />
               <item name="diaryQuran" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="diaryQuran" type="b2602c69:ProjectViewProjectNode" />
-              <item name="diaryQuran" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="diaryQuran" type="b2602c69:ProjectViewProjectNode" />
-              <item name="diaryQuran" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -231,7 +223,7 @@
       <workItem from="1552375047499" duration="1805000" />
       <workItem from="1552465553921" duration="1977000" />
       <workItem from="1552471013645" duration="598000" />
-      <workItem from="1552546909460" duration="1452000" />
+      <workItem from="1552546909460" duration="5140000" />
     </task>
     <task id="LOCAL-00001" summary="finish jwt to get user after register">
       <created>1551926810069</created>
@@ -387,11 +379,25 @@
       <option name="project" value="LOCAL" />
       <updated>1552376824708</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix flow of getting user from token when its expired">
+      <created>1552548391634</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1552548391634</updated>
+    </task>
+    <task id="LOCAL-00024" summary="get read with detail info of surat, ayat, translasi, and tafsir">
+      <created>1552550718536</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1552550718536</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71881000" />
+    <option name="totallyTimeSpent" value="75569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="25" width="1311" height="743" extended-state="6" />
@@ -461,7 +467,9 @@
     <MESSAGE value="update user with automatically delete photo when failed" />
     <MESSAGE value="update readme" />
     <MESSAGE value="progress findingSurat by Id when logged in" />
-    <option name="LAST_COMMIT_MESSAGE" value="progress findingSurat by Id when logged in" />
+    <MESSAGE value="fix flow of getting user from token when its expired" />
+    <MESSAGE value="get read with detail info of surat, ayat, translasi, and tafsir" />
+    <option name="LAST_COMMIT_MESSAGE" value="get read with detail info of surat, ayat, translasi, and tafsir" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/data/surah/1.json">
@@ -520,13 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -548,24 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Surat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/surat/suratController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2250">
-          <caret line="290" column="24" selection-start-line="290" selection-start-column="24" selection-end-line="290" selection-end-column="24" />
-          <folding>
-            <element signature="e#485#3982#0" />
-            <element signature="e#4031#4797#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -573,17 +556,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/Surat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/surat/surats.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+        <state relative-caret-position="256">
+          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/user/userController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
+        <state relative-caret-position="135">
+          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/surat/suratController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="342" column="4" selection-start-line="342" selection-start-column="4" selection-end-line="342" selection-end-column="4" />
+          <folding>
+            <element signature="e#485#3982#0" />
+            <element signature="e#4031#4797#0" />
+          </folding>
         </state>
       </provider>
     </entry>

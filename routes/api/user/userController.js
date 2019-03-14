@@ -8,7 +8,7 @@ const failedResponse = process.env.STATUS_CODE_FAILED;
 const SECRET = process.env.SECRET;
 const SALT = parseInt(process.env.DEFAULT_SALT_ROUNDS);
 
-const displayParameters = 'email username name age';
+const displayParameters = 'email username name age ayat';
 
 exports.saveUser = function (req, res) {
   if (!req.body.username || !req.body.email || !req.body.name || !req.body.age) {
@@ -58,7 +58,7 @@ exports.listUsers = function (req, res, next) {
 exports.me = function (req, res, next) {
   const decoded = req.decoded;
 
-  User.findById(decoded.id, displayParameters).exec().then((output) => {
+  User.findById(decoded.id).exec().then((output) => {
     if (!output) {
       return res.status(failedResponse).json({
         message: 'Token or user expired. Please login again'

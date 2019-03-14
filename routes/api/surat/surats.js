@@ -68,6 +68,7 @@ router.delete('/deleteRead',
   userController.verifyJWT,
   userController.me,
   suratController.findAyatById,
+  suratController.deleteAyatFromUser,
   (req, res) => {
 
   }

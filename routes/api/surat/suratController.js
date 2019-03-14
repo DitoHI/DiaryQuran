@@ -314,6 +314,40 @@ exports.findAyatById = function (req, res, next) {
   });
 };
 
+exports.deleteAyatFromUser = function (req, res) {
+  // delete from ayat
+  const ayatModified = JSON.parse(JSON.stringify(req.ayats));
+  const indexRead = (ayatModified.users).indexOf((req.user._id).toString());
+  if (indexRead === -1) {
+    return res.status(failedResponse).json({
+      message: 'There isn\'t any history related yours in this ayat'
+    })
+  }
+
+  ayatModified.users.splice(indexRead, 1);
+  Ayat.findByIdAndUpdate(ayatModified._id, ayatModified).then((result) => {
+
+    // now delete from user
+    const userModified = JSON.parse(JSON.stringify(req.user));
+    userModified.ayat = null;
+    const newUser = new User(userModified);
+    User.findByIdAndUpdate(userModified._id, userModified).then(() => {
+      return res.status(successResponse).json({
+        user: newUser,
+      })
+    }).catch((err) => {
+      return res.status(failedResponse).json({
+        message: err
+      })
+    })
+
+  }).catch((err) => {
+    return res.status(failedResponse).json({
+      message: err
+    })
+  })
+};
+
 exports.getReadFromUser = function (req, res, next) {
   // output
   // surat, ayats, ayatTranslation, ayatTafsir
