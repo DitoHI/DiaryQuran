@@ -9,7 +9,7 @@ Extract dataset from [quran-json](https://github.com/rioastamal/quran-json) by R
 ### ETL Processing
 The raw dataset is stored in the format of `json`. After we clone the repo, we try to extract and transform the data using **filesystem** in `node.js`. This is the Physical Data of the model which we try to transform into.
 
-![Physical Data of Diary Quran]((https://user-images.githubusercontent.com/16315641/54359202-bfe3eb00-4694-11e9-8304-1edfdf0e5c90.png)) 
+![Physical Data of Diary Quran](https://user-images.githubusercontent.com/16315641/54359202-bfe3eb00-4694-11e9-8304-1edfdf0e5c90.png) 
 
 ### Road Maps
 * CRUD of User with multiple endpoints to support **authentication**
