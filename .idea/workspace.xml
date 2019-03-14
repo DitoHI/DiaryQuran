@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b275771b-6d89-4c33-8d86-3696a5fa8437" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="b275771b-6d89-4c33-8d86-3696a5fa8437" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,8 +17,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="165">
-                <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+              <first_editor relative-caret-position="180">
+                <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               </first_editor>
               <second_editor />
             </state>
@@ -254,7 +251,7 @@
       <workItem from="1552546909460" duration="7195000" />
       <workItem from="1552557331062" duration="4454000" />
       <workItem from="1552568406948" duration="11000" />
-      <workItem from="1552568546676" duration="245000" />
+      <workItem from="1552568546676" duration="493000" />
     </task>
     <task id="LOCAL-00001" summary="finish jwt to get user after register">
       <created>1551926810069</created>
@@ -459,11 +456,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552561776583</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="add physical data of model">
+      <created>1552568942298</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1552568942298</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82334000" />
+    <option name="totallyTimeSpent" value="82582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="25" width="1311" height="743" extended-state="6" />
@@ -538,7 +542,8 @@
     <MESSAGE value="update readme" />
     <MESSAGE value="migrate to passport-jwt in global routing" />
     <MESSAGE value="add strategyInitializer and update readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="add strategyInitializer and update readme" />
+    <MESSAGE value="add physical data of model" />
+    <option name="LAST_COMMIT_MESSAGE" value="add physical data of model" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/data/surah/1.json">
@@ -672,8 +677,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="165">
-            <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <first_editor relative-caret-position="180">
+            <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
           </first_editor>
           <second_editor />
         </state>
