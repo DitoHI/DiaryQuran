@@ -13,7 +13,7 @@ Extract dataset from [quran-json](https://github.com/rioastamal/quran-json) by R
 * ETL Processing using FileSystem to read data from json
 * Get data and filter the value by using `regex`
 * Populate with multiple collections. Collection of ayat have more than two references to another collections.
-* Use `passport-jwt` to integrate the CRUD on Ayat only if user has logged in (progress)
+* Use `passport-jwt` in every route to integrate the CRUD on Ayat only if user has logged in
 
 ### Result of Bookmarked Qur'an
 ```json
