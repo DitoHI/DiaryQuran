@@ -59,6 +59,12 @@ exports.me = function (req, res, next) {
   const decoded = req.decoded;
 
   User.findById(decoded.id, displayParameters).exec().then((output) => {
+    if (!output) {
+      return res.status(failedResponse).json({
+        message: 'Token or user expired. Please login again'
+      })
+    }
+
     req.user = output;
     next();
   }).catch((err) => {

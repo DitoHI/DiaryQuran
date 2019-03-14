@@ -46,4 +46,11 @@ router.get('/yourRead'
   return res.status(successResponse).json(req.ayat)
 });
 
+router.put('/formatRead',
+  userController.verifyJWT,
+  userController.me,
+  (req, res) => {
+  res.send(req.user);
+});
+
 module.exports = router;
